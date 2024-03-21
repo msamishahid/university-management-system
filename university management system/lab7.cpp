@@ -70,7 +70,8 @@ public:
     {
         return teacherID;
     }
-}; 
+};
+
 class Course
 {
 private:
@@ -153,7 +154,6 @@ public:
     }
 };
 
-
 class Student
 {
 private:
@@ -224,6 +224,14 @@ public:
     {
         return find(coursesEnrolled.begin(), coursesEnrolled.end(), courseCode) != coursesEnrolled.end();
     }
+
+
+    vector<string> getEnrolledCourses()
+    {
+        return coursesEnrolled;
+    }
+
+
 };
 
 
@@ -236,23 +244,45 @@ public:
 ///////////////////////////////////////////////////////
 
 
+
 void displayMenu()
 {
     cout << "===== University Management System =====\n";
     cout << "1. Enroll in a course\n";
     cout << "2. View enrolled courses\n";
     cout << "3. Exit\n";
+
 }
+
 
 void displayAvailableCourses(vector<Course>& courses)
 {
     cout << "Available Courses:\n";
-
+    int index = 1;
     for (Course& course : courses)
     {
-        cout << course.getCourseCode() << " - " << course.getCourseName() << endl;
+        cout << index << ". " << course.getCourseCode() << " - " << course.getCourseName() << endl;
+        index++;
     }
 }
+
+
+void displayStudentCourses(Student& student)
+{
+    cout << "\nCourses Enrolled by " << student.getName() << " are mentioned below\n\n";
+
+    const vector<string>& enrolledCourses = student.getEnrolledCourses();
+
+    int index = 1;
+    for (const string& course : enrolledCourses)
+    {
+        cout << "\t" << index << ". " << course << endl;
+        index++;
+    }
+    cout << endl;
+}
+
+
 int main()
 {
     vector<Student> students;
