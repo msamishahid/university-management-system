@@ -152,3 +152,104 @@ public:
         return courseName;
     }
 };
+
+
+class Student
+{
+private:
+    int studentID;
+    string name;
+    string email;
+    vector<string> coursesEnrolled;
+
+public:
+    Student(int id, string n, string e)
+    {
+        studentID = id;
+        name = n;
+        email = e;
+    }
+
+    void enrollInCourse(Course& course)
+    {
+        coursesEnrolled.push_back(course.getCourseCode());
+    }
+
+
+    void dropCourse(string course)
+    {
+        for (int i = 0; i < coursesEnrolled.size(); ++i)
+        {
+            if (coursesEnrolled[i] == course)
+            {
+                coursesEnrolled.erase(coursesEnrolled.begin() + i);
+                break;
+            }
+        }
+    }
+
+    void viewCourses()
+    {
+        int index = 1;
+
+        cout << endl << "Courses Enrolled by " << name << " are mentioned below " << endl << endl;
+
+        for (string course : coursesEnrolled)
+        {
+            cout << "\t\t\t\t Courses " << index << " : " << course << endl;
+            index++;
+        }
+
+        cout << endl;
+    }
+
+    void saveToFile(ofstream& file)
+    {
+        file << studentID << "," << name << "," << email << ",";
+
+        for (string course : coursesEnrolled)
+        {
+            file << course << ";";
+        }
+
+        file << endl;
+    }
+
+    string getName()
+    {
+        return name;
+    }
+
+    bool isEnrolledInCourse(string& courseCode)
+    {
+        return find(coursesEnrolled.begin(), coursesEnrolled.end(), courseCode) != coursesEnrolled.end();
+    }
+};
+
+
+
+
+
+
+/////////////////////////////////////////
+/////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+
+void displayMenu()
+{
+    cout << "===== University Management System =====\n";
+    cout << "1. Enroll in a course\n";
+    cout << "2. View enrolled courses\n";
+    cout << "3. Exit\n";
+}
+
+void displayAvailableCourses(vector<Course>& courses)
+{
+    cout << "Available Courses:\n";
+
+    for (Course& course : courses)
+    {
+        cout << course.getCourseCode() << " - " << course.getCourseName() << endl;
+    }
+}
