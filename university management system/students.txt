@@ -1,0 +1,10 @@
+1001,Student 1,student1@example.com,CSCI1;
+1002,Student 2,student2@example.com,
+1003,Student 3,student3@example.com,
+1004,Student 4,student4@example.com,
+1005,Student 5,student5@example.com,
+1006,Student 6,student6@example.com,
+1007,Student 7,student7@example.com,
+1008,Student 8,student8@example.com,
+1009,Student 9,student9@example.com,
+1010,Student 10,student10@example.com,
